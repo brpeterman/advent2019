@@ -1,0 +1,11 @@
+begin
+    require 'rspec/core/rake_task'
+
+    RSpec::Core::RakeTask.new(:spec)
+
+    task :run do
+        ruby 'image_processor.rb'
+    end
+    task :default => [:spec, :run]
+rescue LoadError
+end
