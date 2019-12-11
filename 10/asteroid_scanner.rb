@@ -47,23 +47,6 @@ module Advent
     end
   end
 
-  class SightLine
-    attr_accessor :slope, :intercept
-
-    def initialize(slope:, intercept:)
-      @slope = slope
-      @intercept = intercept
-    end
-
-    def eql?(other)
-      @slope == other.slope && @intercept == other.intercept
-    end
-
-    def hash
-      { slope: slope, intercept: intercept }.hash
-    end
-  end
-
   class AsteroidScanner
     def initialize(map_definition)
       @asteroids = parse_map(map_definition)
@@ -96,16 +79,6 @@ module Advent
         polar_asteroids[key].sort! { |a, b| a.distance <=> b.distance }
       end
       polar_asteroids
-    end
-
-    def sight_line(point1, point2)
-      slope = :vertical
-      intercept = :vertical
-      if (point2.x != point1.x)
-        slope = (point2.y - point1.y).to_f / (point2.x - point1.x).to_f
-        intercept = point1.y - (slope * point1.x.to_f)
-      end
-      current_line = SightLine.new(slope: slope, intercept: intercept)
     end
 
     def most_asteroids
