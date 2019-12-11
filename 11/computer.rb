@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Advent
   module IntCodeComputer
     class Operation
@@ -37,6 +35,8 @@ module Advent
     }.freeze
 
     class Execution
+      attr_reader :halted
+
       MODES = {
         positional: 0,
         immediate: 1,
@@ -44,6 +44,7 @@ module Advent
       }.freeze
 
       def initialize(initial_memory, phase: nil)
+        @halted = false
         @position = 0
         @relative_base = 0
         @memory = initial_memory.dup
@@ -63,6 +64,7 @@ module Advent
           output = send(operation.implementation, operation, opstring)
           return output if opcode == 4
         end
+        @halted = true
         nil
       end
 

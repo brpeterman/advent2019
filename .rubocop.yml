@@ -17,3 +17,6 @@ Metrics/LineLength:
 
 Metrics/AbcSize:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
