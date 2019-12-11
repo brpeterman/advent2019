@@ -112,29 +112,9 @@ module Advent
       most_asteroids = 0
       best_asteroid = nil
       @asteroids.each do |candidate|
-        sight_lines = Hash.new { [candidate] }
-        @asteroids.each do |other_asteroid|
-          current_line = sight_line(candidate, other_asteroid)
-          asteroid_list = sight_lines[current_line]
-          asteroid_list << other_asteroid
-          sight_lines[current_line] = asteroid_list
-        end
-        total_asteroids = 0
-        sight_lines.each do |_, line|
-          if line.length < 3
-            total_asteroids += 1
-          else
-            # If the candidate has asteroids on either side, then two are visible
-            if (line.find_index { |asteroid| asteroid.x < candidate.x } && line.find_index { |asteroid| asteroid.x > candidate.x }) ||
-               (line.find_index { |asteroid| asteroid.y < candidate.y } && line.find_index { |asteroid| asteroid.y > candidate.y })
-              total_asteroids += 2
-            else
-              total_asteroids += 1
-            end
-          end
-        end
-        if total_asteroids > most_asteroids
-          most_asteroids = total_asteroids
+        visible_asteroids = polar_asteroids(candidate).keys.length
+        if visible_asteroids > most_asteroids
+          most_asteroids = visible_asteroids
           best_asteroid = candidate
         end
       end
