@@ -4,7 +4,7 @@ begin
     RSpec::Core::RakeTask.new(:spec)
 
     task :run do
-        ruby 'computer.rb'
+        ruby 'solve.rb'
     end
     task :default => [:spec, :run]
 rescue LoadError

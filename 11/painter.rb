@@ -1,4 +1,4 @@
-require_relative 'computer'
+require_relative '../intcode/computer'
 
 module Advent
   class Coords

@@ -35,7 +35,7 @@ module Advent
     }.freeze
 
     class Execution
-      attr_reader :halted
+      attr_reader :halted, :memory
 
       MODES = {
         positional: 0,
