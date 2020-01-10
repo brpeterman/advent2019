@@ -1,0 +1,8 @@
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec)
+
+task :run do
+  ruby 'scaffolds.rb'
+end
+task default: %i[spec run]
